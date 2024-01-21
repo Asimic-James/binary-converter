@@ -2,31 +2,16 @@ const numberInput = document.getElementById("number-input");
 const convertBtn = document.getElementById("convert-btn");
 const result = document.getElementById("result");
 
-const countdown = (number) => {
-  console.log(number);
-
-  if (number === 0) {
-    return;
+const decimalToBinary = (input) => {
+  if (input === 0 || input === 1) {
+    return String(input);
   } else {
-    countdown(number - 1);
+    return decimalToBinary(Math.floor(input / 2)) + (input % 2);
   }
 };
 
-countdown(3);
+const showAnimation = () => {
 
-const decimalToBinary = (input) => {
-  let binary = "";
-
-  if (input === 0) {
-    binary = "0";
-  }
-
-  while (input > 0) {
-    binary = (input % 2) + binary;
-    input = Math.floor(input / 2);
-  }
-
-  result.innerText = binary;
 };
 
 const checkUserInput = () => {
@@ -35,7 +20,12 @@ const checkUserInput = () => {
     return;
   }
 
-  decimalToBinary(parseInt(numberInput.value));
+  if (parseInt(numberInput.value) === 5) {
+showAnimation();
+return;
+  }
+
+  result.textContent = decimalToBinary(parseInt(numberInput.value));
   numberInput.value = "";
 };
 
